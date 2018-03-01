@@ -1,5 +1,7 @@
 import os, sys, subprocess
 
+
+#Traduire les commentaires en anglais
 """
     Ce script permet de créer un projet cmake rapidement.
     Il doit être appelé avec en argument n'importe quel fichier source d'un projet.
@@ -16,7 +18,7 @@ import os, sys, subprocess
     brief : Trouve tous les fichiers sources qui accompagnent le fichier fourni
             en argument. Les note dans variables.
 """
-def get_source_files():
+def get_source_files():                         #Malpropre
     try:
         global PROJ_DIR, variables
         PROJ_DIR = os.path.dirname(os.path.realpath(sys.argv[1:][0]))
@@ -37,8 +39,8 @@ def get_source_files():
     arg   : liste des fichiers sources du projet
     brief : Crée les commandes SET(SOURCE_FILES ... )
             et ADD_LIBRARY(...) dans le CMakelists et les inclut dans variables
-"""
-def include_source_files(source_files):
+""" 
+def include_source_files(source_files):         #Cette fonction est malpropre
     global variables
     variables["add_library"] = ""
     variables["source_files"] = ""
@@ -95,7 +97,7 @@ if __name__ == "__main__":
     make_main = False
     variables = {"cmake_version"            :   "3.3",
                  "project_name"             :   "",
-                 "c++_version"              :   "-std=c++14",
+                 "c++_version"              :   "-std=c++14 -O2",                   #changer le nom
                  "source_files"             :   "",
                  "add_library"              :   "",
                  "add_executable"           :   "",
