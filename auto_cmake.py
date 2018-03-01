@@ -25,7 +25,6 @@ def get_source_files():
         for f in os.listdir(PROJ_DIR):
             if f == "main.cpp":
                 variables["add_executable"] = "ADD_EXECUTABLE({0} main.cpp)".format(variables["project_name"])
-                variables["target_link_libraries"] = "TARGET_LINK_LIBRARIES({0} {1})".format(variables["project_name"], variables["project_name"])
             if f.endswith(".cpp") and f != "main.cpp":
                 source_files.append(f)
         return source_files, make_main
@@ -48,7 +47,11 @@ def include_source_files(source_files):
         for f in source_files:
             formated += f + " "
         variables["source_files"] = "SET(SOURCE_FILES {0})".format(formated)
-        variables["add_library"] = "ADD_LIBRARY({0} STATIC ${{SOURCE_FILES}})".format(variables["project_name"])
+        variables["add_library"] = "ADD_LIBRARY({0} STATIC ${{SOURCE_FILES}})".format(variables["project_name"] + "L")
+        variables["library_folder"] = "SET(CMAKE_ARCHIVE_OUTPUT_DIRECTORY \"${PROJECT_SOURCE_DIR}\\\libs\")"
+        if "main.cpp" in os.listdir(PROJ_DIR):
+            variables["target_link_libraries"] = "TARGET_LINK_LIBRARIES({0} {1})".format(variables["project_name"], variables["project_name"] + "L")
+
 
 
 
@@ -69,7 +72,8 @@ def create_cmakelists():
                                                         variables["source_files"],              #{3}
                                                         variables["add_library"],               #{4}
                                                         variables["add_executable"],            #{5}
-                                                        variables["target_link_libraries"]))    #{6}
+                                                        variables["target_link_libraries"],     #{6}
+                                                        variables["library_folder"]))           #{7}
     cmakelists.close()
     cmakelists_template.close()
 
@@ -91,11 +95,12 @@ if __name__ == "__main__":
     make_main = False
     variables = {"cmake_version"            :   "3.3",
                  "project_name"             :   "",
-                 "c++_version"              :   "-std=c++11",
+                 "c++_version"              :   "-std=c++14",
                  "source_files"             :   "",
                  "add_library"              :   "",
                  "add_executable"           :   "",
-                 "target_link_libraries"    :   ""}
+                 "target_link_libraries"    :   "",
+                 "library_folder"           :   ""}
 
     source_files, make_main = get_source_files()
     include_source_files(source_files)
