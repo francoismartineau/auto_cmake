@@ -2,11 +2,17 @@ This python script takes a directory as argument, analyzes every C++ source file
 It's possible to compile a main only, a static library only or both and link them. Don't hesitate to modify this template so it fits your needs.
 
 VIM users: why not add those lines to your .vimrc ?
+
 "AUTO CMAKE     ALT+F5
+
 inoremap <M-F5> <esc>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
+
 map <M-F5> <esc>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
+
 "run            F5
+
 inoremap <F5> <esc>:! %:p:h:t.exe<RETURN><RETURN>
+
 map <F5> <esc>:! %:p:h:t.exe<RETURN><RETURN>
 
 
