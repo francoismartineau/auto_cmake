@@ -3,17 +3,11 @@ It's possible to compile a main only, a static library only or both and link the
 
 VIM users: why not add those lines to your .vimrc ?
 
-"AUTO CMAKE     ALT+F5
 
-inoremap <M-F5> <esc>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
-
-map <M-F5> <esc>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
-
-"run            F5
-
-inoremap <F5> <esc>:! %:p:h:t.exe<RETURN><RETURN>
-
-map <F5> <esc>:! %:p:h:t.exe<RETURN><RETURN>
+-inoremap <M-F5> <esc>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
+-map <M-F5> <esc>:! python C:\_util\auto_cmake\auto_cmake.py %<RETURN><RETURN>
+-inoremap <F5> <esc>:! %:p:h:t.exe<RETURN><RETURN>
+-map <F5> <esc>:! %:p:h:t.exe<RETURN><RETURN>
 
 
 
