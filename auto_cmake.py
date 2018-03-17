@@ -27,7 +27,7 @@ def get_source_files():                         #Malpropre
         for f in os.listdir(PROJ_DIR):
             if f == "main.cpp":
                 variables["add_executable"] = "ADD_EXECUTABLE({0} main.cpp)".format(variables["project_name"])
-            if f.endswith(".cpp") and f != "main.cpp":
+            if f.endswith(".cpp") or f.endswith(".cc") and f != "main.cpp":
                 source_files.append(f)
         return source_files, make_main
     except Exception as e:
